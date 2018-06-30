@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 
-const Weather = (props) => (
+const CurrentWeather = (props) => (
   <Fragment>
     <Typography variant="display1" gutterBottom>
       {props.lat ? `Lat: ${props.lat} Lon: ${props.lon}` : 'Enter a city name'}
@@ -10,4 +10,4 @@ const Weather = (props) => (
   </Fragment>
 );
 
-export default Weather;
+export default CurrentWeather;

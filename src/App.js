@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import Calendar from 'react-calendar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-
 import Form from './components/Form';
-import Weather from './components/Weather';
+import Calendar from './components/Calendar';
+import CurrentWeather from './components/CurrentWeather';
+import ForecastWeather from './components/ForecastWeather';
 import './App.css';
 
 const API_KEY = "b270a2418d4a4352ba854154182606";
@@ -14,26 +14,46 @@ class App extends Component {
   state = {
     lat: undefined,
     long: undefined,
-    date: new Date()
+    city: undefined,
+    date: new Date(),
+    day: undefined,
+    selectedWeather: undefined
   };
 
   getWeather = async e => {
+    // Getting city value
     e.preventDefault();
-
     const city = e.target.elements.city.value;
 
-    const api_call = await fetch(`http://api.apixu.com/v1/current.json?key=${API_KEY}&q=${city}`);
-    const data = await api_call.json();
+    // API call to get current weather
+    try {
+      const api_call = await fetch(`http://api.apixu.com/v1/current.json?key=${API_KEY}&q=${city}`);
+      const data = await api_call.json();
 
-    //console.log(data);
+      // Setting city,lat and lon
+      if (!data.error) {
+        this.setState({
+          lat: data.location.lat,
+          lon: data.location.lon,
+          city: city
+        })
+      }
+      else {
+        throw 'myException';
+      }
 
-    if (data.location.name) {
+    } catch (error) {
       this.setState({
-        lat: data.location.lat,
-        lon: data.location.lon
-      })
+        lat: undefined,
+        long: undefined,
+        city: undefined
+      });
+
+      console.log(error);
     }
+
   };
+
 
   onClickDay = async (day) => {
     // Setting state to current date
@@ -45,34 +65,35 @@ class App extends Component {
       ('0' + (day.getMonth() + 1)).slice(-2) + "-" +
       ('0' + day.getDate()).slice(-2);
 
-    // API call to get weather
-    const api_call = await fetch(`http://api.apixu.com/v1/forecast.json?key=b270a2418d4a4352ba854154182606&&q=dhaka&days=${7}`);
-    const data = await api_call.json();
+    try {
+      // API call to get forecast weather
+      const api_call = await fetch(`http://api.apixu.com/v1/forecast.json?key=b270a2418d4a4352ba854154182606&&q=${this.state.city}&days=${7}`);
+      const data = await api_call.json();
 
-    const filteredData = data.forecast.forecastday.filter(matchDate => {
-      return matchDate.date === day;
-    });
-    console.log(filteredData);
+      const filteredData = data.forecast.forecastday.filter(matchDate => {
+        return matchDate.date === day;
+      });
+
+      this.setState({
+        selectedWeather: filteredData[0]
+      });
+      console.log(filteredData[0]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
-
-    // console.log(this.state.date);
-
     return (
       <Fragment>
         <CssBaseline />
         <Form getWeather={this.getWeather} />
-        <Weather
+        <CurrentWeather
           lat={this.state.lat}
           lon={this.state.lon}
         />
-        <Calendar
-          onClickDay={this.onClickDay}
-          value={this.state.date}
-          maxDate={new Date(new Date().getTime() + (144 * 60 * 60 * 1000))}
-          minDate={new Date()}
-        />
+        {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
+        {this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
       </Fragment>
     );
   }
