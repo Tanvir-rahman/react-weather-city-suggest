@@ -93,7 +93,7 @@ class App extends Component {
           lon={this.state.lon}
         />
         {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
-        {this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+        {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
       </Fragment>
     );
   }
