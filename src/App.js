@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 import Form from './components/Form';
 import Calendar from './components/Calendar';
@@ -8,6 +11,24 @@ import ForecastWeather from './components/ForecastWeather';
 import './App.css';
 
 const API_KEY = "b270a2418d4a4352ba854154182606";
+
+const styles = {
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 
 class App extends Component {
@@ -84,19 +105,26 @@ class App extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
+
     return (
-      <Fragment>
+      <Fragment>      
         <CssBaseline />
-        <Form getWeather={this.getWeather} />
-        <CurrentWeather
-          lat={this.state.lat}
-          lon={this.state.lon}
-        />
-        {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
-        {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+        <Card className={classes.card}>
+          <CardContent>
+            <Form getWeather={this.getWeather} />
+            <CurrentWeather
+              lat={this.state.lat}
+              lon={this.state.lon}
+            />
+            {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
+            {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+            </CardContent>
+        </Card>
       </Fragment>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

@@ -6,6 +6,7 @@ import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import suggestions from 'cities.json';
 
@@ -89,7 +90,7 @@ const styles = theme => ({
   container: {
     flexGrow: 1,
     position: 'relative',
-    height: 250,
+    height: 80,
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -105,6 +106,9 @@ const styles = theme => ({
     margin: 0,
     padding: 0,
     listStyleType: 'none',
+  },
+  button: {
+    margin: theme.spacing.unit,
   },
 });
 
@@ -161,7 +165,13 @@ class Form extends Component {
               onChange: this.handleChange,
             }}
           />  
-          <button type="submit"> Submit </button>
+          <Button 
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            type="submit">
+              Primary
+            </Button>
         </form>
       </Fragment>
     );
