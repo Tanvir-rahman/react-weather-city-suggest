@@ -109,6 +109,8 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+    display: 'block',
+    margin: '8px auto',
   },
 });
 
@@ -159,7 +161,7 @@ class Form extends Component {
             renderSuggestion={renderSuggestion}
             inputProps={{
               classes,
-              placeholder: 'Search a country (start with a)',
+              placeholder: 'Search a city name',
               value: this.state.value,
               name: "city",
               onChange: this.handleChange,
@@ -170,7 +172,7 @@ class Form extends Component {
             color="primary"
             className={classes.button}
             type="submit">
-              Primary
+              Submit
             </Button>
         </form>
       </Fragment>

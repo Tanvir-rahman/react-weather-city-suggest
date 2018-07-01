@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 
 import Form from './components/Form';
 import Calendar from './components/Calendar';
@@ -11,25 +11,6 @@ import ForecastWeather from './components/ForecastWeather';
 import './App.css';
 
 const API_KEY = "b270a2418d4a4352ba854154182606";
-
-const styles = {
-  card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    marginBottom: 16,
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
-
 
 class App extends Component {
   state = {
@@ -105,26 +86,28 @@ class App extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-
-
     return (
-      <Fragment>      
+      <div className="app">      
         <CssBaseline />
-        <Card className={classes.card}>
+        <Card className='card'>
           <CardContent>
             <Form getWeather={this.getWeather} />
+            
+          <Grid item xs={9}>
             <CurrentWeather
               lat={this.state.lat}
               lon={this.state.lon}
             />
             {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
+            </Grid>
+            <Grid item xs={3}>
             {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+            </Grid>
             </CardContent>
         </Card>
-      </Fragment>
+      </div>
     );
   }
 }
 
-export default withStyles(styles)(App);
+export default App;
