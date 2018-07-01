@@ -141,7 +141,6 @@ class Form extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state.value);
     return (
       <Fragment>  
         <form onSubmit={this.props.getWeather}>       

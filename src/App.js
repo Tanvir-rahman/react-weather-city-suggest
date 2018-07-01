@@ -1,27 +1,32 @@
+// Library
 import React, { Component} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
+// Cusstom Components
 import Form from './components/Form';
 import Calendar from './components/Calendar';
 import CurrentWeather from './components/CurrentWeather';
 import ForecastWeather from './components/ForecastWeather';
+
 import './App.css';
 
 const API_KEY = "b270a2418d4a4352ba854154182606";
 
 class App extends Component {
   state = {
-    lat: undefined,
-    long: undefined,
     city: undefined,
+    country: undefined,
+    temperature: undefined,
+    icon: undefined,
     date: new Date(),
     day: undefined,
     selectedWeather: undefined
   };
 
+  // For Fetching current weather
   getWeather = async e => {
     // Getting city value
     e.preventDefault();
@@ -32,12 +37,14 @@ class App extends Component {
       const api_call = await fetch(`http://api.apixu.com/v1/current.json?key=${API_KEY}&q=${city}`);
       const data = await api_call.json();
 
+      console.log(data)
       // Setting city,lat and lon
       if (!data.error) {
         this.setState({
-          lat: data.location.lat,
-          lon: data.location.lon,
-          city: city
+          city: city,
+          country: data.location.country,
+          temperature: data.current.temp_c,
+          icon: data.current.condition.icon
         })
       }
       else {
@@ -46,8 +53,6 @@ class App extends Component {
 
     } catch (error) {
       this.setState({
-        lat: undefined,
-        long: undefined,
         city: undefined
       });
 
@@ -56,7 +61,7 @@ class App extends Component {
 
   };
 
-
+  // For Fetching forecast weather
   onClickDay = async (day) => {
     // Setting state to current date
     this.setState({ day });
@@ -93,17 +98,20 @@ class App extends Component {
           <CardContent>
             <Form getWeather={this.getWeather} />
             
-          <Grid item xs={9}>
-            <CurrentWeather
-              lat={this.state.lat}
-              lon={this.state.lon}
-            />
-            {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
+            <Grid item xs={9}>
+              <CurrentWeather
+                city={this.state.city}
+                country={this.state.country}
+                temperature={this.state.temperature}
+                icon={this.state.icon}
+              />
+              {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
             </Grid>
+
             <Grid item xs={3}>
-            {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+              {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
             </Grid>
-            </CardContent>
+          </CardContent>
         </Card>
       </div>
     );

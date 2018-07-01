@@ -9,6 +9,7 @@ body {
 }
 
 .card {
-  min-width: 48%;
-  min-height: 50%;
+  min-width: 360px;
+  min-height: 180px;
+  overflow: visible !important;
 }
