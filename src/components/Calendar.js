@@ -10,6 +10,7 @@ class Calendar extends Component {
         value={this.props.date}
         maxDate={new Date(new Date().getTime() + (144 * 60 * 60 * 1000))}
         minDate={new Date()}
+        className="calendar"
       />
     );
   }

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
@@ -40,10 +40,10 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
               {part.text}
             </span>
           ) : (
-            <strong key={String(index)} style={{ fontWeight: 500 }}>
-              {part.text}
-            </strong>
-          );
+              <strong key={String(index)} style={{ fontWeight: 500 }}>
+                {part.text}
+              </strong>
+            );
         })}
       </div>
     </MenuItem>
@@ -74,15 +74,15 @@ function getSuggestions(value) {
   return inputLength === 0
     ? []
     : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
+      const keep =
+        count < 5 && suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
 
-        if (keep) {
-          count += 1;
-        }
+      if (keep) {
+        count += 1;
+      }
 
-        return keep;
-      });
+      return keep;
+    });
 }
 
 
@@ -108,7 +108,6 @@ const styles = theme => ({
     listStyleType: 'none',
   },
   button: {
-    margin: theme.spacing.unit,
     display: 'block',
     margin: '8px auto',
   },
@@ -142,8 +141,8 @@ class Form extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment>  
-        <form onSubmit={this.props.getWeather}>       
+      <Fragment>
+        <form onSubmit={this.props.getWeather}>
           <Autosuggest
             theme={{
               container: classes.container,
@@ -165,13 +164,13 @@ class Form extends Component {
               name: "city",
               onChange: this.handleChange,
             }}
-          />  
-          <Button 
+          />
+          <Button
             variant="contained"
             color="primary"
             className={classes.button}
             type="submit">
-              Submit
+            Submit
             </Button>
         </form>
       </Fragment>

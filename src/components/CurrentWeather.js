@@ -1,27 +1,31 @@
 import React, { Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
 
 const Information = (props) => (
-  <div>
-    Current: {props.temperature}
-    <img src={props.icon} alt="Weather Icon"/>
-    {props.city},{props.country}
+  <div className="information">
+    <div className="temp-details">
+      <p className="temperature">
+        Current: {props.temperature}
+        <span className="degree">C</span>
+      </p>
+      <img src={props.icon} alt="Weather Icon" className="current-icon" />
+    </div>
+    <div className="country-details">
+      {props.city},{props.country}
+    </div>
   </div>
 );
 
 
 const CurrentWeather = (props) => (
   <Fragment>
-    <Typography variant="display1" gutterBottom>
-      {
-        props.city ? 
-        <Information 
-        city={props.city} 
-        country={props.country}
-        temperature={props.temperature}
-        icon={props.icon}/> : null
-      }
-    </Typography>
+    {
+      props.city ?
+        <Information
+          city={props.city}
+          country={props.country}
+          temperature={props.temperature}
+          icon={props.icon} /> : null
+    }
   </Fragment>
 );
 

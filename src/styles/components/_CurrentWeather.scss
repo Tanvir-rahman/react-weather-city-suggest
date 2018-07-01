@@ -1,0 +1,24 @@
+.information {
+  .temp-details {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    .temperature {
+      float: left;
+      font-size: 28px;
+      font-weight: normal;
+      .degree {
+        &:before {
+          position: relative;
+          content: "o";
+          font-size: 12px;
+          top: -13px;
+        }
+      }
+    }
+  }
+  .country-details {
+    font-size: 28px;
+    font-weight: normal;
+  }
+}

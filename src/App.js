@@ -1,5 +1,5 @@
 // Library
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,8 +10,7 @@ import Form from './components/Form';
 import Calendar from './components/Calendar';
 import CurrentWeather from './components/CurrentWeather';
 import ForecastWeather from './components/ForecastWeather';
-
-import './App.css';
+import './styles/styles.css';
 
 const API_KEY = "b270a2418d4a4352ba854154182606";
 
@@ -92,24 +91,33 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">      
+      <div className="app">
         <CssBaseline />
         <Card className='card'>
           <CardContent>
             <Form getWeather={this.getWeather} />
-            
-            <Grid item xs={9}>
-              <CurrentWeather
-                city={this.state.city}
-                country={this.state.country}
-                temperature={this.state.temperature}
-                icon={this.state.icon}
-              />
-              {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
-            </Grid>
 
-            <Grid item xs={3}>
-              {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+            {/* Grid to show information */}
+            <Grid container spacing={24}>
+
+              {/* Current Weather */}
+              <Grid item xs={12} sm={8}>
+                <CurrentWeather
+                  city={this.state.city}
+                  country={this.state.country}
+                  temperature={this.state.temperature}
+                  icon={this.state.icon}
+                />
+                {this.state.city && <Calendar onClickDay={this.onClickDay} date={this.state.date} />}
+              </Grid>
+
+              {/* Forecast Weather */}
+              <Grid item xs={12} sm={4} className="forecast-container">
+                {this.state.city && this.state.selectedWeather && <ForecastWeather selectedWeather={this.state.selectedWeather} />}
+
+                {this.state.city && !this.state.selectedWeather && <p>Select a date to see Forecast weather</p>}
+              </Grid>
+
             </Grid>
           </CardContent>
         </Card>

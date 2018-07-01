@@ -1,0 +1,43 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #7474BF;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+
+.app {
+  font-family: 'Slabo 27px', serif; }
+  .app .card {
+    min-width: 360px;
+    min-height: 180px;
+    overflow: visible !important; }
+    .app .card .forecast-container {
+      display: flex;
+      align-items: center; }
+
+.information .temp-details {
+  overflow: hidden;
+  display: flex;
+  align-items: center; }
+  .information .temp-details .temperature {
+    float: left;
+    font-size: 28px;
+    font-weight: normal; }
+    .information .temp-details .temperature .degree:before {
+      position: relative;
+      content: "o";
+      font-size: 12px;
+      top: -13px; }
+
+.information .country-details {
+  font-size: 28px;
+  font-weight: normal; }
+
+.calendar {
+  width: 400px;
+  margin-top: 20px; }
