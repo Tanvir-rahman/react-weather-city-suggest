@@ -19,13 +19,7 @@ library.add(faThermometerHalf,faAngleDoubleRight,faSun,faMoon,faQuestionCircle);
 
 class App extends Component {
   state = {
-    city: undefined,
-    country: undefined,
-    temperature: undefined,
-    icon: undefined,
     date: new Date(),
-    day: undefined,
-    selectedWeather: undefined
   };
 
   // For Fetching current weather
