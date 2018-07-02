@@ -50,3 +50,9 @@ body {
 
 .forecast-weather .img-container {
   text-align: center; }
+
+.forecast-weather .degree:before {
+  position: relative;
+  top: -8px;
+  content: "o";
+  font-size: 12px; }

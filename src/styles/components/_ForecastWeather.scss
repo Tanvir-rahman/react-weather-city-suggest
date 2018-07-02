@@ -10,4 +10,13 @@
   .img-container {
     text-align: center;
   }
+
+  .degree {
+    &:before {
+      position: relative;
+      top: -8px;
+      content: "o";
+      font-size: 12px;
+    }
+  }
 }

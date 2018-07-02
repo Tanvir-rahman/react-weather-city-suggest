@@ -14,6 +14,7 @@ import CurrentWeather from './components/CurrentWeather';
 import ForecastWeather from './components/ForecastWeather';
 import './styles/styles.css';
 
+// API key setup and library adding
 const API_KEY = "b270a2418d4a4352ba854154182606";
 library.add(faThermometerHalf,faAngleDoubleRight,faSun,faMoon,faQuestionCircle);
 
@@ -70,7 +71,7 @@ class App extends Component {
 
     try {
       // API call to get forecast weather
-      const api_call = await fetch(`http://api.apixu.com/v1/forecast.json?key=b270a2418d4a4352ba854154182606&&q=${this.state.city}&days=${7}`);
+      const api_call = await fetch(`http://api.apixu.com/v1/forecast.json?key=b270a2418d4a4352ba854154182606&&q=${this.state.city}&days=${8}`);
       const data = await api_call.json();
 
       const filteredData = data.forecast.forecastday.filter(matchDate => {
