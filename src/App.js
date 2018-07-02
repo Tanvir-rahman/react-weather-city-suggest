@@ -4,6 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faThermometerHalf,faAngleDoubleRight,faSun,faMoon,faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Cusstom Components
 import Form from './components/Form';
@@ -13,6 +15,7 @@ import ForecastWeather from './components/ForecastWeather';
 import './styles/styles.css';
 
 const API_KEY = "b270a2418d4a4352ba854154182606";
+library.add(faThermometerHalf,faAngleDoubleRight,faSun,faMoon,faQuestionCircle);
 
 class App extends Component {
   state = {

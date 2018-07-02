@@ -41,3 +41,12 @@ body {
 .calendar {
   width: 400px;
   margin-top: 20px; }
+
+.forecast-weather .f-icon {
+  margin-right: 10px; }
+
+.forecast-weather .subtitle {
+  font-weight: bold; }
+
+.forecast-weather .img-container {
+  text-align: center; }
