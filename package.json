@@ -31,7 +31,7 @@
     "eject": "react-scripts eject"
   },
   "homepage": "http://tanvir-rahman.github.io/react-weather-city-suggest",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "description": "A weather finder app",
   "main": "index.js",
   "devDependencies": {
     "gh-pages": "^1.2.0"

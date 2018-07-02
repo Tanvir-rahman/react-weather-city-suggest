@@ -34,7 +34,6 @@ class App extends Component {
       const api_call = await fetch(`http://api.apixu.com/v1/current.json?key=${API_KEY}&q=${city}`);
       const data = await api_call.json();
 
-      console.log(data)
       // Setting city,lat and lon
       if (!data.error) {
         this.setState({
@@ -52,8 +51,6 @@ class App extends Component {
       this.setState({
         city: undefined
       });
-
-      console.log(error);
     }
 
   };
