@@ -20,6 +20,15 @@ body {
       display: flex;
       align-items: center; }
 
+@media all and (max-width: 768px) {
+  .app .card {
+    max-width: 424px; } }
+
+@media all and (max-width: 424px) {
+  .app .card {
+    min-width: 306px;
+    max-width: 306px; } }
+
 .information .temp-details {
   overflow: hidden;
   display: flex;
@@ -56,3 +65,6 @@ body {
   top: -8px;
   content: "o";
   font-size: 12px; }
+
+form {
+  margin-top: 120px; }

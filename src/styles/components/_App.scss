@@ -23,3 +23,20 @@ body {
     }
   }
 }
+
+@media all and (max-width: 768px) {
+  .app {
+    .card {
+      max-width: 424px;
+    }
+  }
+}
+
+@media all and (max-width: 424px) {
+  .app {
+    .card {
+      min-width: 306px;
+      max-width: 306px;
+    }
+  }
+}
