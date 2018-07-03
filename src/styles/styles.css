@@ -2,7 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background: #7474BF;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
@@ -23,6 +23,10 @@ body {
 @media all and (max-width: 768px) {
   .app .card {
     max-width: 424px; } }
+
+@media all and (max-width: 599px) {
+  .app .card .forecast-container {
+    justify-content: center; } }
 
 @media all and (max-width: 424px) {
   .app .card {
@@ -65,6 +69,3 @@ body {
   top: -8px;
   content: "o";
   font-size: 12px; }
-
-form {
-  margin-top: 120px; }

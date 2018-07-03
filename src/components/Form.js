@@ -169,7 +169,9 @@ class Form extends Component {
             variant="contained"
             color="primary"
             className={classes.button}
-            type="submit">
+            type="submit"
+            disabled={!this.state.value}
+            >
             Submit
             </Button>
         </form>
