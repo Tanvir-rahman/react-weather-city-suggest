@@ -31,7 +31,7 @@ class App extends Component {
 
     // API call to get current weather
     try {
-      const api_call = await fetch(`http://api.apixu.com/v1/current.json?key=${API_KEY}&q=${city}`);
+      const api_call = await fetch(`https://api.apixu.com/v1/current.json?key=${API_KEY}&q=${city}`);
       const data = await api_call.json();
 
       // Setting city,lat and lon
@@ -68,7 +68,7 @@ class App extends Component {
 
     try {
       // API call to get forecast weather
-      const api_call = await fetch(`http://api.apixu.com/v1/forecast.json?key=b270a2418d4a4352ba854154182606&&q=${this.state.city}&days=${8}`);
+      const api_call = await fetch(`https://api.apixu.com/v1/forecast.json?key=b270a2418d4a4352ba854154182606&&q=${this.state.city}&days=${8}`);
       const data = await api_call.json();
 
       const filteredData = data.forecast.forecastday.filter(matchDate => {
